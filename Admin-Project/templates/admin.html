@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+
+
+</head>
+<body>
+
+
+
+<canvas id="gl"></canvas>
+
+<div id="confirmModal" class="confirm-overlay">
+    <div class="confirm-box">
+        <h3>Delete Project</h3>
+        <p>Are you sure you want to delete this project?</p>
+
+        <div class="confirm-actions">
+            <button id="confirmCancel">Cancel</button>
+            <button id="confirmDelete" class="danger">Delete</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ALERT TOAST BUTTON -->
+<div id="toast"></div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark navbar-expand-md">
+    <div class="container-fluid p-0">
+
+        <a href="/home" data-aos="fade-down" data-aos-duration="500" class="logo ms-3">Anuj</a>
+
+        <button class="navbar-toggler me-3"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navLinks">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ms-auto text-center me-3 ">
+                <li data-aos="fade-down" data-aos-duration="1000" class="nav-item"> <a href="/home" class="nav-link me-5">Home</a></li>
+                <li data-aos="fade-down" data-aos-duration="1500" class="nav-item"> <a href="/about" class="nav-link me-5">About</a></li>
+                <li data-aos="fade-down" data-aos-duration="2000" class="nav-item"> <a href="/projects-view " class="nav-link me-5">Projects</a></li>
+                <li data-aos="fade-down" data-aos-duration="2500" class="nav-item"> <a href="/education" class="nav-link me-5">Education</a></li>
+                <li data-aos="fade-down" data-aos-duration="2500" class="nav-item"> <a href="/contact" class="nav-link me-5">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="admin-wrapper" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom" data-aos-duration="2500">
+    <div class="admin-header">
+        <h2>Admin Panel</h2>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="form-grid">
+        <input id="name" placeholder="Project Name">
+        <input id="image" placeholder="Image URL">
+        <textarea id="desc" placeholder="Project Description"></textarea>
+        <input id="link" placeholder="Project Link">
+
+        <div class="form-actions">
+            <button onclick="add()">Add Project</button>
+            <button class="update-pro" onclick="update()">Update Project</button>
+        </div>
+    </div>
+
+    <div id="list"></div>
+</div>
+
+
+<!-- AOS Script For Refresh Loading-->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script src="{{ url_for('static', filename='hover.js') }}"></script>
+
+
+<!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

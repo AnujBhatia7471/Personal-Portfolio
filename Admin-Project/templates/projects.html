@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='projects.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<canvas id="gl"></canvas>
+
+<!-- ALERT TOAST BUTTON -->
+<div id="toast"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark navbar-expand-md">
+    <div class="container-fluid p-0">
+
+        <a href="/home" data-aos="fade-down" data-aos-duration="500" class="logo ms-3">Anuj</a>
+
+        <button class="navbar-toggler me-3"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navLinks">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ms-auto text-center me-3 ">
+                <li data-aos="fade-down" data-aos-duration="1000" class="nav-item"> <a href="/home" class="nav-link me-5">Home</a></li>
+                <li data-aos="fade-down" data-aos-duration="1500" class="nav-item"> <a href="/about" class="nav-link  me-5">About</a></li>
+                <li data-aos="fade-down" data-aos-duration="2000" class="nav-item"> <a href="/projects-view " class="nav-link me-5" style=" color: #38bdf8 !important;" >Projects</a></li>
+                <li data-aos="fade-down" data-aos-duration="2500" class="nav-item"> <a href="/education" class="nav-link me-5">Education</a></li>
+                <li data-aos="fade-down" data-aos-duration="2500" class="nav-item"> <a href="/contact" class="nav-link me-5">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div class="admin-wrapper" data-aos="flip-left"
+     data-aos-easing="ease-out-cubic"
+     data-aos-duration="1000" >
+
+    <div class="admin-header">
+        <h2>My Projects</h2>
+        <a href="/" class="admin-login-btn">Admin Login</a>
+    </div>
+
+    <div class="admin-cards" id="public-list" data-aos="zoom-out-down" data-aos-duration="2500" ></div>
+
+</div>
+
+<canvas id="gl"></canvas>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ url_for('static', filename='hover.js') }}"></script>
+<script src="{{ url_for('static', filename='public.js') }}"></script>
+
+<!-- AOS Animations Implementation-->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  
+</body>
+</html>

@@ -1,6 +1,8 @@
 import os
 import sqlite3
 import random
+import smtplib
+from email.message import EmailMessage
 from flask import Flask, render_template, request, jsonify, session, redirect
 
 # -------------------------------------------------
@@ -18,14 +20,25 @@ app = Flask(
 
 app.secret_key = "super_secret_key"
 
+EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+
+
 DB_PATH = os.path.join(os.path.dirname(__file__), "database.db")
+
+
+print("EMAIL_ADDRESS =", EMAIL_ADDRESS)
+print("EMAIL_PASSWORD =", EMAIL_PASSWORD)
+
 
 # -------------------------------------------------
 # DATABASE
 # -------------------------------------------------
 
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL")
+
 def get_db():
-    return sqlite3.connect(DB_PATH)
+    return sqlite3.connect(DB_PATH, check_same_thread=False)
 
 with get_db() as db:
     db.execute("""
@@ -36,6 +49,7 @@ with get_db() as db:
             otp TEXT
         )
     """)
+
     db.execute("""
         CREATE TABLE IF NOT EXISTS projects (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,19 +59,124 @@ with get_db() as db:
             link TEXT
         )
     """)
+
     admin_exists = db.execute("SELECT id FROM admin").fetchone()
+
     if not admin_exists:
+        if not ADMIN_EMAIL:
+            raise Exception("ADMIN_EMAIL is not set")
+
         db.execute(
             "INSERT INTO admin (email, password) VALUES (?, ?)",
-            ("admin@example.com", "admin123")
+            (ADMIN_EMAIL, "admin123")
         )
     db.commit()
+
+
+
+# ========= EMAIL OTP VERIFICATION FOR LOGIN PAGE ============
+
+def send_otp_email(to_email, otp):
+    if not EMAIL_ADDRESS or not EMAIL_PASSWORD:
+        print("EMAIL CONFIG NOT SET")
+        return
+
+    msg = EmailMessage()
+    msg["Subject"] = "Your Admin Login OTP"
+    msg["From"] = "Login OTP"
+    msg["To"] = to_email
+    msg.set_content(f"""
+Your OTP for admin login is:
+
+{otp}
+
+This OTP is valid for 5 minutes.
+If you did not request this, ignore this email.
+""")
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        smtp.send_message(msg)
+
+
+
+
+# ================= CONTACT PAGE EMAIL VERIFICATION =================
+
+contact_otp_store = {}
+
+def send_contact_mail(to, subject, body):
+    try:
+        msg = EmailMessage()
+        msg["From"] = EMAIL_ADDRESS
+        msg["To"] = to
+        msg["Subject"] = subject
+        msg.set_content(body)
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            server.send_message(msg)
+
+        print("EMAIL SENT SUCCESSFULLY")
+
+    except Exception as e:
+        print("EMAIL FAILED:", str(e))
+
+
+
+@app.route("/contact/send-otp", methods=["POST"])
+def contact_send_otp():
+    email = request.json["email"]
+
+    otp = str(random.randint(100000, 999999))
+    contact_otp_store[email] = otp
+
+    send_contact_mail(email, "Verify your email", f"Your OTP is: {otp}")
+
+    return jsonify({"success": True})
+
+
+@app.route("/contact/verify-otp", methods=["POST"])
+def contact_verify_otp():
+    email = request.json["email"]
+    otp = request.json["otp"]
+
+    if contact_otp_store.get(email) == otp:
+        session["contact_verified"] = email
+        return jsonify({"success": True})
+
+    return jsonify({"success": False})
+
+
+@app.route("/contact/send-message", methods=["POST"])
+def contact_send_message():
+    if "contact_verified" not in session:
+        return jsonify({"error": "Email not verified"}), 403
+
+    data = request.json
+
+    msg = f"""
+Name: {data['name']}
+Email: {data['email']}
+
+Message:
+{data['message']}
+"""
+
+    send_contact_mail(ADMIN_EMAIL, "New Contact Message", msg)
+
+
+    session.pop("contact_verified", None)
+
+    return jsonify({"success": True})
+
+
 
 # -------------------------------------------------
 # PUBLIC ROUTES
 # -------------------------------------------------
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         data = request.get_json()
@@ -80,10 +199,18 @@ def login():
         session["email"] = email
         session["otp"] = otp
 
-        print("OTP:", otp)
+        send_otp_email(email, otp)
+
         return jsonify({"otp": True})
 
     return render_template("login.html")
+
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 
 @app.route("/home")
 def home():
@@ -116,7 +243,7 @@ def public_projects():
 @app.route("/admin")
 def admin_panel():
     if not session.get("logged"):
-        return redirect("/")
+        return redirect("/login")
     return render_template("admin.html")
 
 @app.route("/admin/projects")
@@ -146,7 +273,7 @@ def verify_otp():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect("/login")
 
 # -------------------------------------------------
 # PROJECT CRUD API (JSON ONLY)
@@ -199,6 +326,5 @@ def projects():
 # -------------------------------------------------
 # RUN
 # -------------------------------------------------
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

@@ -136,20 +136,6 @@ SECRET_KEY=your_secret_key
 
 
 
-
-**📸 Why This Project Is Strong**  
-This is not a static portfolio.  
-It is a real-world full-stack application featuring:  
-Database  
-Authentication  
-Email verification  
-Admin dashboard  
-Live content management  
-WebGL & animations  
-
-
-
-
 **👨‍💻 Author**  
 Anuj Bhatia  
 Full Stack Developer | UI/UX Enthusiast | WebGL & AI Integration  

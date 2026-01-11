@@ -81,7 +81,9 @@ form {
     margin: 0 auto;
     overflow: hidden;
 }
-
+#message {
+    color: #000 !important;
+}
 label {
     color: #ededed;
     margin-bottom: 5px;
@@ -90,6 +92,7 @@ label {
 input[type="text"],
 input[type="email"],
 textarea {
+    color: #000 !important;
     width: 300px;
     padding: 8px;
     margin-bottom: 15px;
@@ -100,6 +103,52 @@ textarea {
 textarea {
     height: 100px;
 }
+
+
+/* =========== CONTACT SEND OTP VERIFICATION ======================= */
+
+#otpBox {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+}
+
+#otp {
+    width: 200px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #00abf0;
+    background: transparent;
+    color: white;
+}
+
+#timer {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #38bdf8;
+}
+
+/* Toast */
+.toast-msg {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #00abf0;
+    color: #041827;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 9999;
+    animation: fadeToast 3s forwards;
+}
+
+@keyframes fadeToast {
+    0% {opacity: 0; transform: translateY(20px);}
+    15% {opacity: 1; transform: translateY(0);}
+    85% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
 
 /* ================= SEND BUTTON ================= */
 

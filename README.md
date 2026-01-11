@@ -1,6 +1,6 @@
 **🌐 Personal Portfolio – Full Stack Web Application**
 
-A fully responsive, glassmorphism-based personal portfolio built with Flask, SQLite, HTML, CSS, JavaScript, and WebGL.
+A fully responsive, glassmorphism-based personal portfolio built with Flask, SQLite, HTML, CSS, JavaScript, and WebGL.   
 It features a secure admin panel, dynamic project management, email verification with OTP, and a modern animated UI.
 This project is designed to demonstrate real-world full-stack development, secure authentication, and production-ready UI/UX.
 🚀 Live Features

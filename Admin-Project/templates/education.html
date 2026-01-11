@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Education</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='education.css') }}">
+
+    <!-- BOOTSTRAP CSS FILE -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS CSS FILE -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+<body>
+<canvas id="gl"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark navbar-expand-md">
+    <div class="container-fluid p-0">
+
+        <a href="/home" data-aos="fade-down" data-aos-duration="500" class="logo ms-3" >Anuj</a>
+
+        <button class="navbar-toggler me-3"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navLinks">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navLinks">
+            <ul class="navbar-nav ms-auto text-center me-3 ">
+                <li data-aos="fade-down" data-aos-duration="1000" class="nav-item"> <a href="/home" class="nav-link me-5">Home</a></li>
+                <li data-aos="fade-down" data-aos-duration="1500" class="nav-item"> <a href="/about" class="nav-link me-5">About</a></li>
+                <li data-aos="fade-down" data-aos-duration="2000" class="nav-item"> <a href="/projects-view " class="nav-link me-5">Projects</a></li>
+                <li data-aos="fade-down" data-aos-duration="2500" class="nav-item"> <a href="/education" class="nav-link me-5"
+                    style=" color: #38bdf8 !important;" >Education</a></li>
+                <li data-aos="fade-down" data-aos-duration="2500" class="nav-item"> <a href="/contact" class="nav-link me-5">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    
+
+    <section class="education" id="education">
+        <h2 class="heading" data-aos="fade-down" data-aos-duration="1500" >My<span> Journey</span></h2>
+        <div class="education-row">
+            <div class="education-column">
+                <h3 class="title" data-aos="fade- down" data-aos-duration="2000">Education</h3>
+                <div class="education-box">
+
+
+                    <div class="education-content" >
+                        <div class="content" data-aos="flip-up" data-aos-duration="1000" >
+                            <div class="year">
+                                <i class='bx bxs-calendar'> </i>2017-2018
+                            </div>
+                                <h3>10th - GSSS Gaarli</h3>
+                                <p>
+                                    I am pleased to inform you that I have successfully completed my 10th class education from 
+                                    <b style="color: aqua;">Government Senior Secondary School Gaarli</b>, achieving a remarkable score of 600 out of 700 marks. 
+                                    This milestone represents not only my dedication to academic excellence but also the supportive 
+                                    environment provided by my school, teachers, and peers.                                 
+                                </p>
+                        </div>
+                    </div>
+
+                    <div class="education-content">
+                        <div class="content" data-aos="flip-up" data-aos-duration="1500" >
+                            <div class="year">
+                                <i class='bx bxs-calendar'></i>2019-2020
+                            </div>
+                                <h3>12th - GSSS Gaarli</h3>
+                                <p>
+                                    I'm pleased to share that I've completed my 12th-grade education at <b style="color: aqua;">Government Senior Secondary
+                                    School Gaarli</b> with a score of 411 out of 500 marks. This achievement reflects my dedication to
+                                    academic excellence and the support I've received from my teachers and peers. I'm grateful for
+                                    the valuable skills and knowledge gained during this journey, and I'm excited to pursue my 
+                                    future endeavors with confidence.                                
+                                </p>
+                        </div>
+                    </div>
+
+                    <div class="education-content">
+                        <div class="content" data-aos="flip-up" data-aos-duration="2000" >
+                            <div class="year">
+                                <i class='bx bxs-calendar'></i>2020-2022
+                            </div>
+                                <h3>Diploma In Computer Science Engeneering - Govt Polytechnic Hamirpur </h3>
+                                <p>
+                                    I am proud to announce that I have completed my Diploma at <b style="color: aqua;">Government 
+                                    Polytechnic Hamirpur</b> with a 
+                                    remarkable score of 2400 out of 3050 marks. This achievement reflects my dedication to excellence 
+                                    and the guidance of my instructors. I look forward to utilizing my education to make meaningful 
+                                    contributions in my chosen field.                                
+                                </p>
+                        </div>
+                    </div>
+
+                    <div class="education-content">
+                        <div class="content" data-aos="flip-up" data-aos-duration="2500" >
+                            <div class="year">
+                                <i class='bx bxs-calendar'></i>2022-2025
+                            </div>
+                                <h3>Degree in CSE - Himachal Pradesh University(U.I.T.)</h3>
+                                <p>
+                                    I am currently pursuing my BTech degree at <b style="color: aqua;"> Himachal Pradesh University</b>, 
+                                    with an expected completion 
+                                    date in 2025. Throughout my academic journey, I have actively engaged in various projects and 
+                                    training programs in different programming languages. These experiences have not only enhanced 
+                                    my technical skills but also provided me with valuable hands-on learning opportunities. I am 
+                                    enthusiastic about leveraging my education and experiences to pursue a rewarding career path in 
+                                    the field of technology                                
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="btn-box" data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom" data-aos-duration="2000" >
+            <a href="/home">HOME</a>
+        </div>
+
+    </section>
+
+    
+
+
+<script src="{{ url_for('static', filename='hover.js') }}"></script>
+
+    <!-- BOOTSTRAP SCRIPT FILE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS SCRIPT FILE -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+
+</body>
+</html>

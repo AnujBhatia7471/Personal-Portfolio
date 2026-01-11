@@ -15,6 +15,14 @@ Delete,
 
 
 
+**🎮 Spline 3D Integration**    
+- Live interactive 3D scene in the background  
+- Enhances visual depth and realism  
+- Works with glassmorphism UI  
+
+
+
+
 
 **📁 Dynamic Project Management**
 Projects are stored in SQLite database  
@@ -67,6 +75,7 @@ Python (Flask)
 SQLite (DBMS)  
 Flask Sessions  
 SMTP (Email & OTP System)  
+Spline 3D  
 
 
 

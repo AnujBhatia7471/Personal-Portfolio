@@ -1,8 +1,11 @@
-**🌐 Personal Portfolio – Full Stack Web Application**
-
+**🌐 Personal Portfolio – Full Stack Web Application**  
 A fully responsive, glassmorphism-based personal portfolio built with Flask, SQLite, HTML, CSS, JavaScript, and WebGL.   
 It features a secure admin panel, dynamic project management, email verification with OTP, and a modern animated UI.   
 This project is designed to demonstrate real-world full-stack development, secure authentication, and production-ready UI/UX.  
+[Visit Personal Portfolio](https://anujbhatia.pythonanywhere.com/)
+
+
+
 🚀 Live Features  
 🔐 Secure Admin Panel  
 Admin authentication system 
@@ -110,7 +113,7 @@ Bot abuse
 
 **⚙ Installation & Setup**  
 1️⃣ Clone the Repository  
-git clone https://github.com/your-username/Personal-Portfolio.git  
+git clone https://github.com/AnujBhatia7471/Personal-Portfolio.git  
 cd Personal-Portfolio  
 2️⃣ Create Virtual Environment  
 python -m venv venv  

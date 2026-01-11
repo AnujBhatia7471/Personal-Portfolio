@@ -132,7 +132,7 @@ http://127.0.0.1:5000/home
 Create a .env file:  
 EMAIL_ADDRESS=your_email@gmail.com  
 EMAIL_PASSWORD=your_app_password  
-SECRET_KEY=your_secret_key  
+SECRET_KEY=your_secret_key  // IT MUST BE AN APP PASSWORD GENEREATED BY YOU GOOGLE ACCOUNT
 
 
 
